@@ -6,8 +6,6 @@ local default_config = {
     wpm = 230
 }
 
-local user_config = vim.g.readtime_options or default_config
-
 local function word_count()
     local lines = vim.api.nvim_buf_get_lines(0, 0, -1, true)
     local text = table.concat(lines, " ")
