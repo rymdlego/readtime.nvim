@@ -1,5 +1,7 @@
 local M = {}
 
+M.config = {}
+
 local default_config = {
     wpm = 230
 }
@@ -22,7 +24,8 @@ M.display_read_time = function()
     print(word_count() .. " words / " .. user_config.wpm .. " WPM = " .. read_time() .. " minutes of read time.")
 end
 
-M.setup = function()
+M.setup = function(user_config)
+    M.config = vim.tbl_deep_extend("force", {}, default_config, user_config or {})
     vim.api.nvim_create_user_command('ReadTime', M.display_read_time, {})
 end
 
